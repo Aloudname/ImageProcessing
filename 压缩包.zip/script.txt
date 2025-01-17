@@ -1,0 +1,15 @@
+lists = Getpath('data')
+a = [Image() for i in range(6)]
+for i in range(6):
+    a[i].read(lists[i])
+
+eq = []
+for i in range(6):
+    a[i].Equalization()
+    eq.append(a[i].equ)
+
+filted, edges = [], []
+for i in range(6):
+    filted.append(a[i].filt(a[i].img, 'gaussian', d = 5, sigma = 2.5))
+    edges.append(a[i].edgeExtract(filted[i], 10, 50))
+    show(edges[i])
